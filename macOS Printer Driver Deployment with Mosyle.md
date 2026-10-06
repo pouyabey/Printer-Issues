@@ -2,13 +2,21 @@
 
 ### Problem
 
-Network printers were successfully added to managed Macs through Mosyle, but the manufacturer-specific printer drivers were not available.
+Users were repeatedly experiencing printer issues on managed Macs, particularly after macOS updates.
 
-As a result, some printers were using generic drivers and advanced features such as color options, duplex printing, paper trays, and finishing settings were unavailable.
+Printers would sometimes remain installed, but the manufacturer-specific drivers were missing or no longer being used correctly. This resulted in users losing access to features such as color printing, duplex printing, paper tray selection, and finishing options.
+
+Manually reinstalling printer drivers would resolve the issue temporarily, but the same problem could occur again on other devices or after future updates.
+
+Rather than continuing to fix the issue manually on individual Macs, I wanted to address the root cause and create a consistent, automated deployment process.
 
 ### Root Cause
 
-Deploying the printer configuration alone was not sufficient. The correct manufacturer driver package and PPD needed to be installed and associated with the printer configuration.
+The printer configuration was being deployed through Mosyle, but the configuration alone did not guarantee that the required manufacturer driver and PPD were installed and available on each Mac.
+
+Without the correct driver, macOS could fall back to a generic driver or create an incomplete printer configuration.
+
+The long-term solution was to ensure that both the printer driver and the printer configuration were deployed together through MDM.
 
 ### Resolution
 
@@ -24,4 +32,8 @@ Deploying the printer configuration alone was not sufficient. The correct manufa
 
 ### Result
 
-Printers can now be deployed automatically through MDM with the correct driver and full printer functionality, eliminating the need for manual driver installation on each Mac.
+The printer driver and configuration can now be deployed consistently through MDM.
+
+This addressed the underlying cause of the recurring printer issues rather than relying on manual fixes each time a user experienced a problem.
+
+It also reduced repetitive support work and made printer deployments more consistent across managed Macs.
